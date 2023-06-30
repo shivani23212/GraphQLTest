@@ -8,8 +8,8 @@ const typeDefs = gql `
         username: String!,
         age: Int!,
         nationality: Nationality!,
-        friends: [User]
-        favouriteMovies: [Movie];
+        friends: [User],
+        favouriteMovies: [Movie]
     }
 
     type Movie {
@@ -25,6 +25,18 @@ const typeDefs = gql `
         movies: [Movie!]!,
         movie(name: String!): Movie!
     }
+
+    input CreateUserInput { # helps the user to create new type instance
+        name: String!, # required field
+        username: String!,
+        age: Int!,
+        nationality: Nationality = CANADA
+    }
+
+    type Mutation {
+        createUser(input: CreateUserInput!): User # GQL must return an obj when its created / updated
+    }
+
 
     enum Nationality {
         CANADA

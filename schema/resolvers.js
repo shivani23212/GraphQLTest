@@ -28,6 +28,16 @@ const resolvers = { // all resolver functions that exist for the Query type
             return _.filter(MovieList, (movie) => movie.yearOfPublication >= 2000
             && movie.yearOfPublication <=2010);
         }
+    },
+
+    Mutation: {
+        createUser(parent, args) {
+            const user = args.input; // 'input' is userinput from the type-def
+            const newId = UserList[UserList.length-1].id + 1;
+            user.id = newId;
+            UserList.push(user);
+            return user;
+        }
     }
 }
 
