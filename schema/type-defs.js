@@ -33,8 +33,15 @@ const typeDefs = gql `
         nationality: Nationality = CANADA
     }
 
+    input UpdateUserName {
+        id: ID!
+        newUserName: String!
+    }
+
     type Mutation {
         createUser(input: CreateUserInput!): User # GQL must return an obj when its created / updated
+        updateUserName(input: UpdateUserName!): User # mutator to update username, using inputs defined in UpdateUserName
+        deleteUser(id:ID!): User # deletes user based on id
     }
 
 

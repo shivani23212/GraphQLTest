@@ -37,6 +37,26 @@ const resolvers = { // all resolver functions that exist for the Query type
             user.id = newId;
             UserList.push(user);
             return user;
+        },
+
+        updateUserName(parent, args) {
+            const id = args.input.id;
+            const newUserName = args.input.newUserName;
+            let updatedUser;
+            UserList.forEach((user) => {
+                    if (user.id === Number(id)) {
+                        user.username = newUserName;
+                        updatedUser = user;
+                    }
+                }
+            );
+        return updatedUser;
+    },
+
+        deleteUser(parent, args) {
+            const id = args.id;
+            _.remove(UserList, (user) => user.id === Number(id));
+            return null;
         }
     }
 }
